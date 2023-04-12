@@ -9,3 +9,5 @@ const router = Router()
 
 
 router.post('/participants', validateSchema(participantSchema), postParticipant)
+
+export default router
