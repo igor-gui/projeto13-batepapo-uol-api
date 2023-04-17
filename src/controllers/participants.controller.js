@@ -5,6 +5,7 @@ export async function postParticipant(req, res) {
     try {
         await participants.insertOne(body)
         await messages.insertOne(message)
+        console.log(message)
         return res.status(201).send('Usuário Cadastrado')
     }
     catch (err) {

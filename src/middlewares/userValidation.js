@@ -15,6 +15,7 @@ export default async function userValidation(req, res, next) {
                 type: 'status',
                 time: dayjs(Date.now()).format("HH:mm:ss")
         }
+        return next()
         }
         return res.status(409).send({message: "Usuário Já cadastrado"})
     }
