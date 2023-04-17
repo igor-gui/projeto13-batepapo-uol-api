@@ -1,9 +1,10 @@
-
+import dayjs from "dayjs";
 export default function buildMessageBody(req, res, next){
-    const { body } = res.locals;
+    const { from } = res.locals.body;
+    console.log(from)
         const message =
         {
-            ...body,
+            from,
             ...req.body,
             time: dayjs(Date.now()).format("HH:mm:ss")
         }
