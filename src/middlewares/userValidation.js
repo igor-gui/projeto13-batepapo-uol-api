@@ -7,7 +7,7 @@ export default async function userValidation(req, res, next) {
     try {
         const alreadyExists = await participants.findOne({ name })
         if (!alreadyExists) {
-            res.locals.body = { name, lasStatus: dayjs(Date.now()).format("HH:mm:ss") }
+            res.locals.body = { name, lasStatus: Date.now() }
             res.locals.message = { 
                 from: name,
                 to: 'Todos',

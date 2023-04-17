@@ -10,7 +10,7 @@ export default async function filterMessages(req, res, next) {
         ]
     }
     try {
-        const messagesToSend = await messages.find(query).toArray()
+        let messagesToSend = await messages.find(query).toArray()
         res.locals.body = messagesToSend;
     } catch (err) {
         console.error(err)
