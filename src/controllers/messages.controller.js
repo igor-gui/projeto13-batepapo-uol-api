@@ -1,9 +1,17 @@
 import { messages } from "../config/collections.database.js";
 
-export async function postMessage(req, res){
+export async function postMessage(req, res) {
+    const { finalBody } = res.locals;
+    try {
+        await messages.insertOne(finalBody);
+        const allMessages = messages.find().toArray();
+        return res.status(201).send(allMessages)
 
+    } catch (err) {
+        console.error(err)
+        return res.sendStatus(422)
+    }
 }
 
-export async function getMessages(req, res){
-
+export async function getMessages(req, res) {
 }
