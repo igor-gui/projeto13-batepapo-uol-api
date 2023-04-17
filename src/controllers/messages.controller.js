@@ -14,4 +14,6 @@ export async function postMessage(req, res) {
 }
 
 export async function getMessages(req, res) {
+    const { body } = res.locals
+    return res.send(body)
 }
