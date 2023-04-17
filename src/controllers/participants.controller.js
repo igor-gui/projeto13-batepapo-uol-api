@@ -1,9 +1,10 @@
-import { participants } from "../config/collections.database.js";
+import { messages, participants } from "../config/collections.database.js";
 
 export async function postParticipant(req, res) {
-    const { name } = req.body;
+    const { body, message } = res.locals;
     try {
-        await participants.insertOne({ name, lastStatus: Date.now() })
+        await participants.insertOne(body)
+        await messages.insertOne(message)
         return res.status(201).send('Usuário Cadastrado')
     }
     catch (err) {
@@ -14,7 +15,7 @@ export async function postParticipant(req, res) {
 export async function getParticipants(req, res) {
     try {
         const partList = await participants.find().toArray();
-        if(!partList) partList = []
+        if (!partList) partList = []
         return res.send(partList)
     }
     catch (err) {
